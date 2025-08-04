@@ -1,0 +1,18 @@
+build/
+*.o
+*.d
+*.elf
+*.bin
+*.map
+*.hex
+*.lst
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
