@@ -13,7 +13,7 @@ A minimal, fully manual bare-metal STM32 project using Makefiles, linker scripts
 
 ## Memory Layout
 
-📷 [Insert memory diagram here or link to docs/memory-map.svg]
+📷 
 
 ## Getting Started
 
