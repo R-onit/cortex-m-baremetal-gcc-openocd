@@ -1,7 +1,8 @@
 # cortex-m-baremetal-gcc-openocd
 
 A minimal, fully manual bare-metal STM32 project using Makefiles, linker scripts, and OpenOCD — no IDEs, no HALs.
-
+ 
+...work in Progress
 ## Features
 
 - Manual startup file
