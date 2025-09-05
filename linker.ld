@@ -5,9 +5,9 @@ MEMORY
   RAM   (rwx) : ORIGIN = 0x20000000, LENGTH = 20k
 }
 
-  ENTRY(Reset_Handler)  /* Entry point after reset */
+  ENTRY(Reset_Handler) 
 
-  /* Stack pointer: reserve stack at end of RAM */
+  # Stack pointer: reserve stack at end of RAM 
   _estack  = ORIGIN(RAM) + LENGTH(RAM);
   
 
@@ -43,4 +43,3 @@ SECTIONS
 
 }
 
-ENTRY(Reset_Handler)  /* Entry point after reset */

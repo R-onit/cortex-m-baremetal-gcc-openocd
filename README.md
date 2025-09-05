@@ -19,12 +19,15 @@ A minimal bare-metal STM32F103RB project demonstrating understanding of ARM Cort
 ---
 
 ## Folder Structure
-src/ # C source files
-startup/ # Startup assembly file
-linker.ld # Custom linker script
-Makefile # Build, flash, and debug targets
-README.md
-
+cortex-m-baremetal-gcc-openocd/
+├── src/ # C source files
+│ └── main.c
+├── startup/ # Startup assembly file
+│ └── startup.s
+├── linker.ld # Custom linker script
+├── Makefile # Build, flash, and debug targets
+├── README.md # Project documentation
+└── LICENSE # License file
 
 
 ---
@@ -33,11 +36,14 @@ README.md
 
 ```bash
 # Build all
-make all
+make 
 
 # Flash to the board using OpenOCD
 make flash
 
 # Debug using GDB
 make debug
+
+#Clean 
+make clean
 
