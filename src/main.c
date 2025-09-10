@@ -5,8 +5,12 @@
 #define APB2PERIPH_BASE (PERIPH_BASE + 0x10000UL)
 
 
-#define RCC_BASE        (APB2PERIPH_BASE + 0x1000UL)
-#define GPIOA_BASE      (APB2PERIPH_BASE + 0x0800UL)
+
+#define RCC_BASE        0x40021000UL
+#define GPIOA_BASE      0x40010800UL
+
+// #define RCC_BASE        (APB2PERIPH_BASE + 0x1000UL)
+// #define GPIOA_BASE      (APB2PERIPH_BASE + 0x0800UL)
 
 
 #define RCC_APB2ENR     (*(volatile uint32_t *)(RCC_BASE + 0x18))

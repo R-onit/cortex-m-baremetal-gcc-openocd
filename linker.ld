@@ -1,15 +1,14 @@
+ENTRY(Reset_Handler) 
+
+
+  # Stack pointer: reserve stack at end of RAM 
+_estack  = ORIGIN(RAM) + LENGTH(RAM);
 
 MEMORY
 {
+    RAM   (rwx) : ORIGIN = 0x20000000, LENGTH = 20k
   FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 128K
-  RAM   (rwx) : ORIGIN = 0x20000000, LENGTH = 20k
-}
-
-  ENTRY(Reset_Handler) 
-
-  # Stack pointer: reserve stack at end of RAM 
-  _estack  = ORIGIN(RAM) + LENGTH(RAM);
-  
+}  
 
 SECTIONS  
 {
