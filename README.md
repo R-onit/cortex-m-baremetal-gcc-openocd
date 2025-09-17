@@ -34,7 +34,7 @@ This repo proves end-to-end understanding of **ARM Cortex-M architecture** and t
 - Flash/debug with OpenOCD & GDB  
 
 ---
-## 📂 Repository Structure
+## Repository Structure
 - [src/](src/) – Application C sources (main.c)
 - [startup/](startup/) – Startup assembly (startup.s)
 - [include/](include/) – Optional headers
@@ -73,7 +73,7 @@ source.c ---> gcc ---> .o ---> ld ---> firmware.elf
 ---
 ---
 
-## 🔨 Build & Flash
+## Build & Flash
 
 **1. Build project**
 ```bash

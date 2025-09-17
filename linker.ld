@@ -1,6 +1,5 @@
 ENTRY(Reset_Handler) 
 
-
   # Stack pointer: reserve stack at end of RAM 
 _estack  = ORIGIN(RAM) + LENGTH(RAM);
 

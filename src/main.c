@@ -26,18 +26,12 @@ static void delay(volatile uint32_t count) {
 }
 
 int main(void) {
-
-
     // 1. Enable GPIOA clock
     RCC_APB2ENR |= RCC_IOPAEN;
-
 
     // 2. Configure PA5 as push-pull output, 2 MHz
     GPIOA_CRL &= ~(0xF << 20);  // clear CNF5 + MODE5
     GPIOA_CRL |=  (0x2 << 20);  // MODE5 = 10 (output 2 MHz), CNF5 = 00 (push-pull)
-
-
-
 
     // 3. Blink loop
     while (1) {
