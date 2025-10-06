@@ -72,7 +72,29 @@ source.c ---> gcc ---> .o ---> ld ---> firmware.elf
 
 ---
 ---
+##  Requirements
+Make sure you have the following tools installed before building or flashing this project:
 
+### 1. ARM GNU Toolchain
+Used to compile and link the firmware for Cortex-M microcontrollers.
+
+```bash
+sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi gdb-multiarch -y
+```
+### 2. OpenOCD
+Used to flash and debug the firmware on STM32 boards.
+```bash
+sudo apt install openocd -y
+```
+Test detection:
+```bash
+openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
+```
+### 3. Build Tools
+For Makefile-based builds:
+```bash
+sudo apt install build-essential make git -y
+```
 ## Build & Flash
 
 **1. Build project**
