@@ -54,7 +54,7 @@ gdb: $(TARGET)
 	@openocd -f interface/stlink.cfg -f target/stm32f1x.cfg &
 	@sleep 2
 	@echo "Connecting GDB..."
-	@arm-none-eabi-gdb $(TARGET) -ex "target remote :3333"
+	@gdb-multiarch $(TARGET) -ex "target remote :3333"
 
 flash: $(TARGET)
 	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg \
