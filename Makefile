@@ -49,14 +49,14 @@ $(BIN):$(TARGET)
 
 
 # GDB debugging over OpenOCD
-gdb: $(TARGET)
-	@echo "Starting OpenOCD GDB server..."
-	@openocd -f interface/stlink.cfg -f target/stm32f1x.cfg &
-	@sleep 2
+gdb: $(TARGET)	
+	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg &
+	sleep 2
 	@echo "Connecting GDB..."
 	@gdb-multiarch $(TARGET) -ex "target remote :3333"
 
 flash: $(TARGET)
+	@echo "Starting OpenOCD GDB server..."
 	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg \
 	-c "program $(TARGET) verify reset exit"
 
