@@ -1,5 +1,6 @@
 #include <stdint.h>
 
+#define SCS_BASE        0xE000E000UL
 #define PERIPH_BASE     0x40000000UL
 #define APB2PERIPH_BASE (PERIPH_BASE + 0x10000UL)
 #define APB1PERIPH_BASE (PERIPH_BASE + 0x00010000UL)
@@ -8,6 +9,7 @@
 #define GPIOA_BASE      0x40010800UL
 #define UART_BASE       0x40004400UL
 #define AFIO_BASE       0x40010000UL
+#define SYSTICK_BASE    (SCS_BASE + 0x00000010UL)
 
 
 #define RCC_APB2ENR     (*(volatile uint32_t *)(RCC_BASE + 0x18))
@@ -18,15 +20,22 @@
 #define AFIO_MAPR       (*(volatile uint32_t *)(AFIO_BASE + 0x04))
 
 
-#define UART_SR         (*(volatile uint32_t *)(UART_BASE))
+#define UART_SR         (*(volatile uint32_t *)(UART_BASE)) 
 #define UART_DR         (*(volatile uint32_t *)(UART_BASE + 0x04))
 #define UART_BRR        (*(volatile uint32_t *)(UART_BASE + 0x08))
 #define UART_CR1        (*(volatile uint32_t *)(UART_BASE + 0x0C))
+
+#define SYST_CSR        (*(uint32_t *)(SYSTICK_BASE + 0x00000000))
+#define SYST_RVR        (*(uint32_t *)(SYSTICK_BASE + 0x00000004))
+#define SYST_CVR        (*(uint32_t *)(SYSTICK_BASE + 0x00000008))
+
 
 #define RCC_IOPAEN      (1 << 2)
 #define RCC_AFIOEN      (1 << 0)
 #define RCC_UART2EN     (1 << 17)
 #define LED_PIN         (1 << 5)
+#define SYSTICK_EN      (1 << 0)
+#define COUNTFLAG       (1 << 16)
 #define SYS_CLK		    8000000U
 #define BAUD_RATE	    115200U
 
@@ -39,6 +48,7 @@ void uart_init(void);
 char uart_read();
 void uart_write(char ch);
 void set_BaudRate(uint32_t clk ,uint32_t baud );
+void systick_delay(int delay);
 
 int main(void) {
     gpio_init();
@@ -47,11 +57,25 @@ int main(void) {
     //Blink loop
     while (1) {
         GPIOA_ODR ^= LED_PIN;  // toggle PA5
-        delay(500000);
+        systick_delay(1);
 
         char recieved = uart_read();
         uart_write(recieved);
     }
+}
+
+void systick_delay(int delay){
+    SYST_RVR = (SYS_CLK * 1000) -1;
+    SYST_CVR = 0;
+
+    // enabled the clock , and set the mcu clock for use
+    SYST_CSR |= SYSTICK_EN | (1 << 2);
+
+    for(int i =0 ;i<delay; i++){
+        while((SYST_CSR & COUNTFLAG)==0);
+    }
+    SYST_CSR =0;
+
 }
 
 void gpio_init(void){
